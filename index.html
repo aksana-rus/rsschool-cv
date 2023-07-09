@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  href="style.css">
+  <title>Aksana Yuzhaninava CV</title>
+</head>
+<body class="page-body">
+<header>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#code-examples">Code example</a></li>          
+      </ul>        
+    </nav>
+</header>
+<div class="container">  
+ <aside class="aside">
+  <div class="left-column">
+    <figure class="figure-left-column">
+      <img
+        src="photo.jpg"
+        width="350"
+        height="400"
+        class="photo"
+        alt="Photo of Aksana Yuzhaninava"
+      >
+    </figure>
+      <section id="contact">
+        <h2 class="section-h2">Contact</h2>
+          <ul>
+            <li> Phone: <br>
+               <a href="tel:+375336637478">+375 (33) 6637478</a>
+            </li>
+            <li> Email: <br>
+               <a href="aksana.rusovich@gmail.com">aksana.rusovich@gmail.com</a>
+            </li>
+            <li> Address: <br> Belarus, Minsk
+            </li>
+        </ul>
+      </section>
+      <section id="education">
+        <h2 class="section-h2">Education</h2>
+          <ul>
+            <li> Belarusian state pedagogical university named after Maksim Tank
+               <br>Faculty of Mathematics
+            </li>
+            <li > ABAP Development Lab
+            </li>
+          </ul>
+      </section>
+      <section id="languages">
+          <h2 class="section-h2">Languages</h2>
+          <ul>
+            <li>        
+              RUSSIAN
+              <br>native spiker
+            </li>
+            <li>
+              BELARUSIAN
+              <br>native spiker
+            </li>
+            <li >
+              POLISH
+              <br>basic
+            </li> 
+            <li>
+              ENGLISH
+              <br>B1+
+            </li>                           
+          </ul>
+        </section>
+    </div>
+ </aside>
+ <main class="main">      
+      <div class="main-column">
+        <section class="main-column-title">
+          <h1>Aksana <br>Yuzhaninava</h1>
+          <p>Back-End developer</p>
+        </section>
+        <section class="summary" id="summary">
+          <h2 class="section-h2">Summary</h2>
+          <p>            
+            More then 3 years of experience as ABAP developer including ABAP development for HANA, Web Services‍. 
+            Solid knowledge of the ABAP Dictionary, ABAP Objects, ABAP Programming, ABAP Workbench, 
+            ALV Controls, background processing, changing the SAP standard, dialogue programming. 
+            Practical experience in development, implementation, enhancement and support of SAP products. 
+            Quite strong programming and problem analysis skills proven under high-pressure environments in external project. 
+            Effective team player with proven ability to communicate with team members and work successfully in multinational team.
+          </p>
+        </section>
+        <section class="skills" id="skills">
+          <h2 class="section-h2">Skills</h2>
+          <ul>
+            <li class="skills-list">SAP ABAP</li>
+            <li class="skills-list">HTML/CSS</li>
+            <li class="skills-list">OpenSQL</li>
+            <li class="skills-list">SAP Gateway</li>
+            <li class="skills-list">OData</li>
+          </ul>
+        </section>
+        <section class="code-examples" id="code-examples">
+          <h2 class="section-h2">Code examples</h2>
+          <details>
+            <summary>SAP ABAP code</summary>
+             <pre>
+               <code data-language = "ABAP">                
+TABLES: SFLIGHT.
+data: begin of t_data OCCURS 0.
+          DATA: CARRID like SFLIGHT-CARRID, "type S_CARR_ID,
+                CONNID like SFLIGHT-CONNID, "S_CONN_ID,
+                FLDATE like SFLIGHT-FLDATE, "S_DATE,
+ end of t_data.
+
+  APPEND INITIAL LINE TO t_data ASSIGNING FIELD-SYMBOL(fs).
+  fs-CARRID = 'AAA'.
+  fs-CONNID = '2000'.
+  fs-FLDATE = '10091981'.
+  APPEND INITIAL LINE TO t_data ASSIGNING fs.
+  fs-CARRID = 'BBB'.
+  fs-CONNID = '2000'.
+  fs-FLDATE = '10091981'.
+
+  DATA lt_fieldcat TYPE slis_t_fieldcat_alv.
+  DATA ls_fieldcat LIKE LINE OF lt_fieldcat.
+  DATA(lr_tabdescr) = cast CL_ABAP_STRUCTDESCR( cl_abap_structdescr=>describe_by_data( t_data ) ).
+  DATA(lt_dfies) = cl_salv_data_descr=>read_structdescr( lr_tabdescr ).
+  LOOP AT lt_dfies INTO data(ls_dfies).
+    CLEAR ls_fieldcat.
+    MOVE-CORRESPONDING ls_dfies TO ls_fieldcat.
+    APPEND ls_fieldcat TO lt_fieldcat.
+  ENDLOOP.
+
+  CHECK lt_fieldcat is not initial.
+  LOOP AT LT_FIELDCAT ASSIGNING FIELD-SYMBOL(fb).
+    CASE fb-FIELDNAME.
+      WHEN 'CARRID'.
+        fb-EDIT = 'X'.
+    WHEN OTHERS.
+    ENDCASE.
+  ENDLOOP.
+              </code>
+            </pre>
+          </details>
+        </section>
+   </div>>
+ </main>
+</div>
+ <footer class="footer">
+    <a class="footer-github" href="https://github.com/aksana-rus">My GitHub</a>
+    <p class="footer-year">2023</p>
+    <a class="footer-school" href="https://rs.school/js/">
+      <img src="rs_school_js.svg" width="86" height="32" alt="RS School">
+    </a>
+ </footer>
+</body>
+</html>
